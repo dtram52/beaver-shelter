@@ -1,0 +1,79 @@
+<%= stylesheet_link_tag 'shelter_profile_edit.css' %>
+
+<div class="content">
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.text_field :name, autofocus: true, placeholder: "Shelter Name", class: "form-inputs" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :street_address, autofocus: true, placeholder: "Street Address", class: "form-inputs" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :city, autofocus: true, placeholder: "City", class: "form-inputs" %>
+  </div>
+
+  <div class="field">
+
+    <%= f.text_field :zip_code, autofocus: true, placeholder: "Zip Code", class: "form-inputs" %>
+  </div>
+
+  <div class="field">
+
+    <%= f.text_field :state, autofocus: true, placeholder: "State", class: "form-inputs" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :phone_number, autofocus: true, placeholder: "Phone Number", class: "form-inputs" %>
+  </div>
+
+  <% if resource.logo.attached? %>
+    <%= image_tag url_for(resource.logo), height: '200px' %>
+  <% end %>
+
+  <div class="field-logo">
+    <%= f.label :"Upload Shelter Logo:" %>
+    <%= f.file_field :logo, class:"form-inputs", placeholder: "Logo" %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-inputs" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password", class: "form-inputs" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+    <i>(leave blank if you don't want to change it)</i>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm New Password", class: "form-inputs" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Current Password", class: "form-inputs" %>
+    <i>(we need your current password to confirm your changes)</i>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class:"login-button" %>
+  </div>
+<% end %>
+
+<p>Unhappy?</p>
+<h3>Cancel my account</h3>
+<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"login-button" %>
+<%= link_to "Back", :back %>
+</div>

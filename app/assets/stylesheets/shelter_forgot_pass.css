@@ -1,0 +1,56 @@
+body {
+  background: url(petadopt.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.content {
+  height: 280px;
+  width: 400px;
+  background-color: #f6f9fc;
+  text-align: center;
+  padding: 20px;
+
+  margin: auto;
+  margin-top: 10px;
+
+  box-sizing: border-box;
+  border-style: ridge;
+  border-color: #e1f7ea;
+
+  position: -webkit-sticky;
+  position: sticky;
+
+  font-family: Monospace;
+  font-size: 16px;
+}
+
+.content h2 {
+  font-family: times;
+  font-size: 35px;
+}
+
+.form-inputs {
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 10px;
+  width: 90%;
+}
+
+.login-button {
+  width: 90%;
+  border-radius: 10px;
+  margin: 7px;
+}
+
+.shared-links {
+  padding-top: 10px;
+  font-family: times;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  .content {
+    width: 90%;
+    height: 50%;
+  }
+}

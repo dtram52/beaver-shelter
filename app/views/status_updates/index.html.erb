@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Status Updates</h1>
+
+<% @status_updates.each do |status_update| %>
+  <div class="card">
+    <div class="card-body bg-light row justify-content-center">
+      <div class="col-md-4">
+        <% if status_update.images.attached? %>
+          <%= image_tag url_for(status_update.images.first), height: '200px' %>
+        <% else %>
+          <%= image_tag ("beaver.png"), height: '200px' %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Shelter:</strong> <%= status_update.shelter.name %></p>
+        <p><strong>Animal:</strong> <%= link_to "#{status_update.animal_profile.name}", status_update.animal_profile  %></p>
+        <p>"<%= status_update.content %>" <small class="text-muted"> at <%= status_update.created_at %></small></p>
+        <% if shelter_signed_in? && current_shelter.id == status_update.shelter_id %>
+          <%= link_to 'Edit', edit_status_update_path(status_update), class: "btn btn-secondary" %>
+          <%= link_to 'Destroy', status_update, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

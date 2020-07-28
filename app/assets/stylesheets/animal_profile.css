@@ -1,0 +1,110 @@
+
+body {
+	background-color: white;
+}
+
+main {
+	display: flex;
+}
+
+main span {
+	color: black;
+}
+
+a {
+	color: #466DB2;
+}
+
+.navbar-toggler {
+	text-align: left;
+	font-size: 1em;
+}
+
+.myNavBar {
+	width: 50%;
+}
+
+.cardProfiles {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.cardProfiles section {
+	border: 2px solid #E1F7EA ;
+	text-align: center;
+	width: 200px;
+	height: 315px;
+	max-width: 33%;
+	background-color: #f6f9fc;
+	margin: 10px 1px 10px 1px;
+	padding-top: .5em;
+	padding-bottom: .5em;
+	box-sizing: border-box;
+}
+
+.cardProfiles section:hover {
+	box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+}
+
+.cardProfiles p {
+	text-align: center;
+}
+
+.animal_pic {
+	height: 150px;
+	width: 150px;
+	object-fit: contain;
+	text-align: center;
+}
+
+#sortLinks {
+	text-align: left;
+	width: 100%;
+	padding-bottom: 1em;
+}
+
+
+@media screen and (max-width: 1000px) {
+	main {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.cardProfiles section {
+		width: 100%;
+		max-width: 45%;
+	}
+
+	.navbar-toggler {
+		text-align: left;
+		width: 100%;
+	}
+
+	#sortLinks {
+		text-align: left;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	header {
+		text-align: center;
+	}
+
+	.cardProfiles section {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.navbar-toggler {
+		text-align: left;
+		width: 100%;
+	}
+
+	#sortLinks {
+		text-align: left;
+		width: 100%;
+	}
+}

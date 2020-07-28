@@ -1,0 +1,5 @@
+send_weekly_updates:
+  cron: "0 10 * * 0"
+  class: WeeklyUpdatesJob
+  queue: weekly_updates_mailer
+  description: Gathers status updates in past week and sends to users with email notifications enabled

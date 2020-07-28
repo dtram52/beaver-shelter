@@ -1,0 +1,61 @@
+<%= stylesheet_link_tag 'shelter_signup.css' %>
+
+<div class="content">
+<h2>Shelter Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.text_field :name, autofocus: true, class:"form-inputs", placeholder: "Shelter Name" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :street_address, autofocus: true, class:"form-inputs", placeholder: "Street Address" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :city, autofocus: true, class:"form-inputs", placeholder: "City" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :zip_code, autofocus: true, class:"form-inputs", placeholder: "Zip Code" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :state, autofocus: true, class:"form-inputs", placeholder: "State" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :phone_number, autofocus: true, class:"form-inputs", placeholder: "Phone Number" %>
+  </div>
+
+  <div class="field-logo">
+    <%= f.label :"Upload Shelter Logo:" %>
+    <%= f.file_field :logo, class:"form-inputs", placeholder: "Logo" %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-inputs", placeholder: "Email" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-inputs", placeholder: "Password" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-inputs", placeholder: "Confirm Password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class:"login-button" %>
+  </div>
+<% end %>
+
+<div class="shared-links">
+  <%= render "shelters/shared/links" %>
+</div>
+</div>

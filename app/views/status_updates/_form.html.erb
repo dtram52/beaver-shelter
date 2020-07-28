@@ -1,0 +1,15 @@
+
+<%= simple_form_for(@status_update) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs form-group">
+    <%= f.input :animal_profile_id, collection: @animal_profiles, prompt: '-- Select Animal --', required: true, class: "form-control" %>
+    <%= f.input :images, as: :file, multiple: true, input_html: { multiple: true } %>
+    <%= f.input :content, class: "form-control" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

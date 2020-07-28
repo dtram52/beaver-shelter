@@ -1,0 +1,17 @@
+<%= simple_form_for(@animal_profile) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :images, as: :file, multiple: true, input_html: { multiple: true } %>
+  <%= f.input :animal_type, collection: AnimalProfile::ANIMAL_TYPES, prompt: "Please select", error: 'please enter a type..' %>
+  <%= f.input :breed, placeholder: "Tabby, Corgi, etc" %>
+  <%= f.input :weight, placeholder: "lbs" %>
+  <%= f.input :height, placeholder: "in" %>
+  <%= f.input :color %>
+  <%= f.input :good_with_animals %>
+  <%= f.input :good_with_children %>
+  <%= f.input :must_be_leashed %>
+  <%= f.input :availability, collection: AnimalProfile::STATUS_OPTIONS, prompt: "Please select", as: :select %>
+  <%= f.error :base %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+

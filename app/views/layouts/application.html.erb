@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beaver Shelter</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Beaver Shelter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Browse Animals", animal_profiles_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Browse Status Updates", status_updates_path, class: "nav-link" %>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% elsif shelter_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Create Animal Profile", new_animal_profile_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Create Status Update", new_status_update_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Edit Shelter Profile", edit_shelter_registration_path, class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to "Logout", destroy_shelter_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                  Shelters
+                </a>
+                <div class="dropdown-menu">
+                  <%= link_to "Shelter Sign Up", new_shelter_registration_path, class: "dropdown-item" %>
+                  <%= link_to "Shelter Login", new_shelter_session_path, class: "dropdown-item" %>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                  Adopters
+                </a>
+                <div class="dropdown-menu">
+                  <%= link_to "Adopter Sign Up", new_user_registration_path, class: "dropdown-item" %>
+                  <%= link_to "Adopter Login", new_user_session_path, class: "dropdown-item" %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

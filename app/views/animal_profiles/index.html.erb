@@ -1,0 +1,135 @@
+<%= stylesheet_link_tag 'animal_profile.css' %>
+
+<header>
+  <p id="notice"><%= notice %></p>
+  <h1>Animal Profiles</h1>
+</header>
+
+<main>
+  <section class="myNavBar">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <nav id="sidebar">
+        <%= search_form_for @search do |f| %>
+        <div id="adv-search">
+          <div class="form-group">
+            <label for="name_field">Animal Name</label>
+            <br>
+            <%= f.search_field :name_cont %>
+          </div>
+          <div class="form-group">
+            <label for="type_field">Animal Type</label>
+            <br>
+            <%= f.search_field :animal_type_cont %>
+          </div>
+          <div class="form-group">
+            <label for="breed_field">Breed</label>
+            <br>
+            <%= f.search_field :breed_cont %>
+          </div>
+          <div class="form-group">
+            <label for="color_field">Color </label>
+            <br>
+            <%= f.search_field :color_cont %>
+          </div>
+
+          <div class="form-group">
+            <label for="weight_field">Weight range </label>
+            <br>
+            <%= f.text_field :weight_gteq, :placeholder => 'min weight' %>
+            <br>
+            <%= f.text_field :weight_lteq, :placeholder => 'max weight' %>
+          </div>
+          <div class="form-group">
+            <label for="height_field">Height range </label>
+            <br>
+            <%= f.text_field :height_gteq, :placeholder => 'min height' %>
+            <br>
+            <%= f.text_field :height_lteq, :placeholder => 'max height' %>
+          </div>
+
+          <div class="form-check" style="padding-left: 0px;">
+            <%= f.check_box :good_with_animals_true, include_hidden: false %>
+            <label class="form-check-label" for="">
+              Good with animals
+            </label>
+            <br>
+            <%= f.check_box :good_with_children_true, include_hidden: false %>
+            <label class="form-check-label" for="">
+              Good with children
+            </label>
+            <br>
+            <%= f.check_box :must_be_leashed_true, include_hidden: false %>
+            <label class="form-check-label" for="">
+              Must be leashed
+            </label>
+          </div>
+          <br>
+
+          <div class="actions">
+            <%= f.submit "Search" =%>
+          </div>
+          <div class="actions">
+            <%= link_to "Reset Search", request.path, class: "" %>
+          </div>
+        </div>
+        <% end %>
+      </nav>
+    </div>
+    <nav class="navbar navbar-light" style="padding-left: 0px;">
+      <div id="sortLinks">
+        <div class="">
+          <%= sort_link @search, :animal_type, "Animal Type" %>
+        </div>
+        <div class="">
+          <%= sort_link @search, :weight, "Weight" %>
+        </div>
+        <div class="">
+          <%= sort_link @search, :height, "Height" %>
+        </div>
+      </div>
+      <button class="navbar-toggler btn btn-sm btn-outline-success" type="button" data-toggle="collapse"
+      data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+      aria-label="Toggle navigation" style="padding-left: 0px;">
+      <span>Click for Advanced Search</span>
+    </button>
+  </nav>
+</section>
+
+
+<section class="cardProfiles">
+  <% @animal_profiles.each do |animal_profile| %>
+  <section>
+    <div id="">
+      <% if animal_profile.images.attached? %>
+      <%= image_tag url_for(animal_profile.images.first), class: "animal_pic" %>
+      <% else %>
+      <%= image_tag ("beaver.png"), class: "animal_pic" %>
+      <% end %>
+    </div>
+    <p>
+      I am <%= animal_profile.name %>
+    </p>
+    <p>
+      Breed: <%= animal_profile.breed %>
+    </p>
+    <p>
+      Status: <%= animal_profile.availability %>
+    </p>
+    <button type="button" class="btn btn-sm btn-outline-secondary">
+      <%= link_to 'Show', animal_profile %>
+    </button>
+    <% if shelter_signed_in? && current_shelter.id == animal_profile.shelter_id %>
+    <button type="button" class="btn btn-sm btn-outline-secondary">
+      <%= link_to 'Edit', edit_animal_profile_path(animal_profile) %>
+    </button>
+    <button type="button" class="btn btn-sm btn-outline-secondary">
+      <%= link_to 'Destroy', animal_profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </button>
+    <% end %>
+  </section>
+  <% end %>
+</section>
+
+</main>
+
+
